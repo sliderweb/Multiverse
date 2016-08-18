@@ -13,12 +13,20 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-					{% partial 'header' %}
+                {% partial 'header' %}
 
-				<!-- Main -->
-					<div id="main">
-						{% partial 'main'%}
-					</div>
+                <!-- Main -->
+                <div id="main">
+                    {% for upload in uploads if upload.upload_active %}
+                        <article class="thumb">
+                            <a href="{{ upload.upload_path|media }}" class="image"><img src="{{ upload.upload_path|mediathumb_resize(auto, 512) }}" alt="" /></a>
+                            <h2>{{ upload.upload_title }}</h2>
+                            <p>{{ upload.upload_description }}</p>
+                        </article>
+                    {% else %}
+                        {% partial 'main' %}
+                    {% endfor %}
+                </div>
 
 				<!-- Footer -->
 					<footer id="footer" class="panel">
@@ -31,7 +39,7 @@
 								    {% partial 'socials' %}
 								</section>
 								<p class="copyright">
-									&copy; Unttled. Design: <a href="http://html5up.net">HTML5 UP</a>.<br>
+									&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.<br>
 									Ported by <a href="https://sliderweb.ru">SLIDER.WEB studio</a>.
 								</p>
 							</div>

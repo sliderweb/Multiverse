@@ -3,3 +3,19 @@ url = "/"
 layout = "default"
 is_hidden = 0
 ==
+<?php
+    function onStart()
+    {
+        $manager = \System\Classes\PluginManager::instance();
+        if (!$manager->exists('RobVW.MultiverseContentManager'))
+        {
+            return false;
+        }
+
+        if ($uploads = \RobVW\MultiverseContentManager\Models\Upload::all())
+        {
+            $this['uploads'] = $uploads;
+        }
+    }
+?>
+==
